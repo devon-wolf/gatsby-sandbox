@@ -1,0 +1,18 @@
+main {
+    font-family: monospace;
+    font-size: 1rem;
+    padding: 6rem;
+}
+
+a, a:link, a:visited {
+    color: purple;
+    text-decoration: none;
+}
+
+a:hover {
+    color: orangered;
+}
+
+a:active {
+    color: goldenrod;
+}

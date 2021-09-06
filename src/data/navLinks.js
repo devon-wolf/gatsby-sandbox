@@ -1,11 +1,11 @@
 const navLinks =[
     {
-        text: 'Link1',
-        url: '#'
+        text: 'Home',
+        url: '/'
     },
     {
-        text: 'Link2',
-        url: '#'
+        text: 'About',
+        url: '/about'
     }
 ];
 
