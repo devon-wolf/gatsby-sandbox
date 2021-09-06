@@ -1,25 +1,14 @@
 import React from "react";
 import Header from '../components/Header';
-import LinkList from "../components/LinkList";
 import navLinks from '../data/navLinks';
-import links from '../data/indexLinks';
+import './style.css';
 
-// styles
-const pageStyles = {
-  color: "#232129",
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-};
-
-// markup
 const IndexPage = () => {
   return (
-    <main style={pageStyles}>
+    <main>
       <title>Home</title>
 
       <Header pageTitle="Gatsby Sandbox" navLinks={navLinks} />
-
-      <LinkList links={links} />
 
       <img
         alt="Gatsby G Logo"

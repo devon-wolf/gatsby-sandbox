@@ -1,22 +1,16 @@
 import React from 'react';
-
-const headerStyles = {
-    marginTop: 0,
-    marginBottom: 64,
-    maxWidth: 320,
-    backgroundColor: '#FF00FF'
-};
-
+import { Link } from 'gatsby';
+import './Header.css';
 
 const Header = ({ pageTitle, navLinks }) => {
     return (
-        <header style={headerStyles}>
+        <header className="pageHeader">
             <h1>
                 {pageTitle}
             </h1>
-            <nav>
+            <nav className="headerNav">
                 {navLinks.map(({ text, url }) =>
-                    <a href={url} key={url + text}>{text}</a>
+                    <Link to={url} key={url + text}>{text}</Link>
                 )}
             </nav>
         </header>
