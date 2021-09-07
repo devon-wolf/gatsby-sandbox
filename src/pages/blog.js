@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Layout from '../components/Layout';
 import navLinks from '../data/navLinks';
 
@@ -13,15 +14,20 @@ const BlogPage = ({ data }) => {
             pageTitle="Blog"
             navLinks={navLinks}
         >
-            <ul>
-                {nodes.map(({ id, frontmatter }) => 
-                    <li key={id}>
+            {nodes.map(({ id, frontmatter, body }) => 
+                <article key={id}>
+                    <h2>
                         {frontmatter.title}
-                        <br />
+                    </h2>
+                    <p>
                         {frontmatter.date}
-                    </li>     
-                )}
-            </ul>
+                    </p>
+                    <hr />
+                    <MDXRenderer>
+                        {body}
+                    </MDXRenderer>
+                </article>     
+            )}
         </Layout>
     );
 };
@@ -41,13 +47,14 @@ BlogPage.propTypes = {
 
 export const query = graphql`
 query {
-    allMdx {
+    allMdx(sort: {fields: frontmatter___date, order: DESC}) {
       nodes {
         frontmatter {
           title
           date(formatString: "MMMM D, YYYY")
         }
         id
+        body
       }
     }
   }
