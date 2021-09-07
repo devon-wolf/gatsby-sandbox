@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 // eslint-disable-next-line no-undef
 module.exports = {
   siteMetadata: {
@@ -8,12 +9,13 @@ module.exports = {
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        name: 'blog',
+        name: `blog`,
         // eslint-disable-next-line no-undef
         path: `${__dirname}/blog/`
       }
-    }
+    },
+    'gatsby-plugin-mdx'
   ]
 };

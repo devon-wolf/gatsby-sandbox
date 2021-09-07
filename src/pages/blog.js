@@ -1,32 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Layout from '../components/Layout';
 import navLinks from '../data/navLinks';
 
 const BlogPage = ({ data }) => {
 
-    const { nodes } = data.allFile;
+    const { nodes } = data.allMdx;
 
     return (
         <Layout
             pageTitle="Blog"
             navLinks={navLinks}
         >
-            <ul>
-                {nodes.map(({ name }) => 
-                    <li key={name}>{name}</li>     
-                )}
-            </ul>
+            {nodes.map(({ id, frontmatter, body }) => 
+                <article key={id}>
+                    <h2>
+                        {frontmatter.title}
+                    </h2>
+                    <p>
+                        {frontmatter.date}
+                    </p>
+                    <hr />
+                    <MDXRenderer>
+                        {body}
+                    </MDXRenderer>
+                </article>     
+            )}
         </Layout>
     );
 };
 
 BlogPage.propTypes = {
     data: PropTypes.shape({
-        allFile: PropTypes.shape({
+        allMdx: PropTypes.shape({
             nodes: PropTypes.arrayOf(PropTypes.shape({
-                name: PropTypes.string
+                frontmatter: PropTypes.shape({
+                    title: PropTypes.string,
+                    date: PropTypes.string
+                })
             }))
         })
     }).isRequired
@@ -34,12 +47,17 @@ BlogPage.propTypes = {
 
 export const query = graphql`
 query {
-    allFile(filter: {dir: {glob: "**/blog"}}) {
-        nodes {
-            name
+    allMdx(sort: {fields: frontmatter___date, order: DESC}) {
+      nodes {
+        frontmatter {
+          title
+          date(formatString: "MMMM D, YYYY")
         }
+        id
+        body
+      }
     }
-}
+  }
 `;
 
 export default BlogPage;
