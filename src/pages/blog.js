@@ -34,7 +34,7 @@ BlogPage.propTypes = {
 
 export const query = graphql`
 query {
-    allFile {
+    allFile(filter: {dir: {glob: "**/blog"}}) {
         nodes {
             name
         }

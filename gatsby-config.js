@@ -12,7 +12,7 @@ module.exports = {
       options: {
         name: 'blog',
         // eslint-disable-next-line no-undef
-        path: `${__dirname}/blog`
+        path: `${__dirname}/blog/`
       }
     }
   ]
