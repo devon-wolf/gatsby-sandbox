@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const listItemStyles = {
     fontWeight: 300,
@@ -8,14 +9,14 @@ const listItemStyles = {
 };
 
 const linkStyle = {
-    color: "#8954A8",
-    fontWeight: "bold",
+    color: '#8954A8',
+    fontWeight: 'bold',
     fontSize: 16,
-    verticalAlign: "5%",
+    verticalAlign: '5%',
 };
   
   const descriptionStyle = {
-    color: "#232129",
+    color: '#232129',
     fontSize: 14,
     marginTop: 10,
     marginBottom: 0,
@@ -23,16 +24,16 @@ const linkStyle = {
 };
 
 const badgeStyle = {
-    color: "#fff",
-    backgroundColor: "#088413",
-    border: "1px solid #088413",
+    color: '#fff',
+    backgroundColor: '#088413',
+    border: '1px solid #088413',
     fontSize: 11,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     letterSpacing: 1,
     borderRadius: 4,
-    padding: "4px 6px",
-    display: "inline-block",
-    position: "relative",
+    padding: '4px 6px',
+    display: 'inline-block',
+    position: 'relative',
     top: -2,
     marginLeft: 10,
     lineHeight: 1,
@@ -40,7 +41,7 @@ const badgeStyle = {
 
 const LinkItem = ({ link }) => {
     return (
-        <li key={link.url} style={{ ...listItemStyles, color: link.color }}>
+        <li style={{ ...listItemStyles, color: link.color }}>
 
                 <span>
                 <a
@@ -59,6 +60,16 @@ const LinkItem = ({ link }) => {
 
         </li>
     );
-}
+};
+
+LinkItem.propTypes = {
+    link: PropTypes.shape({
+        url: PropTypes.string.isRequired,
+        color: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+        badge: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired
+    }).isRequired
+};
 
 export default LinkItem;

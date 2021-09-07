@@ -16,7 +16,15 @@
   },
   "dependencies": {
     "gatsby": "^3.13.0",
+    "gatsby-plugin-gatsby-cloud": "^3.1.0",
+    "gatsby-plugin-image": "^1.13.0",
+    "gatsby-plugin-sharp": "^3.13.0",
+    "gatsby-source-filesystem": "^3.13.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.25.1"
   }
 }
