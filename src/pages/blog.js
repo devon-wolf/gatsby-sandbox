@@ -6,7 +6,7 @@ import navLinks from '../data/navLinks';
 
 const BlogPage = ({ data }) => {
 
-    const { nodes } = data.allFile;
+    const { nodes } = data.allMdx;
 
     return (
         <Layout
@@ -14,8 +14,12 @@ const BlogPage = ({ data }) => {
             navLinks={navLinks}
         >
             <ul>
-                {nodes.map(({ name }) => 
-                    <li key={name}>{name}</li>     
+                {nodes.map(({ id, frontmatter }) => 
+                    <li key={id}>
+                        {frontmatter.title}
+                        <br />
+                        {frontmatter.date}
+                    </li>     
                 )}
             </ul>
         </Layout>
@@ -24,9 +28,12 @@ const BlogPage = ({ data }) => {
 
 BlogPage.propTypes = {
     data: PropTypes.shape({
-        allFile: PropTypes.shape({
+        allMdx: PropTypes.shape({
             nodes: PropTypes.arrayOf(PropTypes.shape({
-                name: PropTypes.string
+                frontmatter: PropTypes.shape({
+                    title: PropTypes.string,
+                    date: PropTypes.string
+                })
             }))
         })
     }).isRequired
@@ -34,12 +41,16 @@ BlogPage.propTypes = {
 
 export const query = graphql`
 query {
-    allFile(filter: {dir: {glob: "**/blog"}}) {
-        nodes {
-            name
+    allMdx {
+      nodes {
+        frontmatter {
+          title
+          date(formatString: "MMMM D, YYYY")
         }
+        id
+      }
     }
-}
+  }
 `;
 
 export default BlogPage;
