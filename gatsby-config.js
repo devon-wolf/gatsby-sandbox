@@ -5,8 +5,15 @@ module.exports = {
     title: 'Gatsby Sandbox',
   },
   plugins: [
-    'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-image',
-    'gatsby-plugin-sharp'
+    'gatsby-plugin-sharp',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'blog',
+        // eslint-disable-next-line no-undef
+        path: `${__dirname}/blog`
+      }
+    }
   ]
 };
